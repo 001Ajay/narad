@@ -1,0 +1,49 @@
+spring:
+  application:
+    name: zuul
+
+server:
+  port: 9000
+
+eureka:
+  client:
+    register-with-eureka: true
+    fetch-registry: true
+    serviceUrl:
+      defaultZone: http://localhost:8761/eureka
+
+
+management:
+  endpoint:
+    routes:
+      enabled: true
+    filters:
+      enabled: false
+
+management.security.enabled: false
+management.endpoints.web.exposure.include: info, health, routes
+
+# Zuul routes - http://localhost:9000/actuator/routes
+
+zuul:
+  ignore-security-headers: true
+  strip-prefix: false
+  host:
+    soclet-timeout-millis: 50000000
+    connectTimeoutMillis: 50000000
+  routes:
+    #    adRestAp:
+    #      url: http://localhost:8090
+    ad-rest-app:
+      serviceId: ad-rest-app
+    ad-server-ocr:
+      serviceId: ad-server-ocr
+    jarvis:
+      serviceId: jarvis
+
+logging:
+  pattern:
+    console: Log - %msg%n
+  level:
+    root: error
+    com.netflix.discovery: off
