@@ -13,6 +13,25 @@ Services - http://localhost:8761/
 ### Receiver
 
 
+spring:
+  cloud.stream:
+    defaultBinder: scl
+    binders:
+      scl:
+        type: kafka
+        environment.spring.cloud.stream:
+          kafka.binder.brokers: "localhost:9092"
+      scl1:
+        type: kafka
+        environment.spring.cloud.stream:
+          kafka.binder.brokers: "localhost:9092"
+    bindings:
+      outputRequest:
+        destination: "outputRequestDev"
+        binder: scl1
+    kafka.binder:
+      autoAddPartitions: true
+
 
 ### Transformer
 ### Publisher
