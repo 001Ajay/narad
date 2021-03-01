@@ -41,5 +41,5 @@ Tech Stack to Cover
 DONE - Zuul + Eureka (Need to upgrade too Spring Cloud Gateway)
 In Progress - Docker, Kubernetes
 
-TODO - ReactJS, React-Redux, Marklogic, Kafka, Rabbit, Spring Integration
+TODO - CQRS, ReactJS, React-Redux, Marklogic, Kafka, Rabbit, Spring Integration
 Concourse, Azure, Sonar
