@@ -1,6 +1,60 @@
+#reference : https://itnext.io/how-to-install-kafka-using-docker-a2b7c746cbdc
+
 spring:
   application:
     name: queue-receiver
+  cloud:
+    stream:
+          default-binder: kafka
+          bindings:
+            inputChannel:
+              destination: test_input_channel
+              group: test1
+            outputChannel:
+              destination: test_output_channel
+              group: test1
+          kafka:
+            binder:
+              brokers: localhost:9092
+              type: kafka
+              autoAddPartitions: true
+              auto-create-topics: true
+            consumer:
+              auto-offset-reset: earliest
+
+#  cloud.stream:
+#    default-binder: kafka1
+#    bindings:
+#      greetings-in:
+#        destination: test_input_channel
+#        contentType: application/json
+#        group: test1
+#      greetings-out:
+#        destination: test_output_channel
+#        contentType: application/json
+#        group: test1
+#    binders:
+#      kafka1:
+#        type: kafka
+#        environment:
+#          spring:
+#            cloud:
+#              stream:
+#                kafka:
+#                  binder.brokers: localhost:9092
+#                  streams:
+#                    binder:
+#                      configuration:
+#                        default.key.serde: org.apache.kafka.common.serialization.Serdes$StringSerde
+#                        default.value.serde: org.springframework.kafka.support.serializer.JsonSerde
+#                      security:
+#                        protocol: SASL_PLAINTEXT
+#                      jaas:
+#                        loginModule: org.apache.kafka.common.security.scram.ScramLoginModule
+#                        options:
+#                          username: usr
+#                          password: pwd
+
 
 server:
   port: 9030
@@ -12,5 +66,5 @@ eureka:
     register-with-eureka: true
     fetch-registry: true
     enabled: true
-#    healthcheck:
-#      enabled: true
+  instance:
+    instance-id: ${spring.application.name}:${server.port}
