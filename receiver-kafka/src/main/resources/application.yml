@@ -5,22 +5,22 @@ spring:
     name: queue-receiver
   cloud:
     stream:
-          default-binder: kafka
-          bindings:
-            inputChannel:
-              destination: test_input_channel
-              group: test1
-            outputChannel:
-              destination: test_output_channel
-              group: test1
-          kafka:
-            binder:
-              brokers: localhost:9092
-              type: kafka
-              autoAddPartitions: true
-              auto-create-topics: true
-            consumer:
-              auto-offset-reset: earliest
+      default-binder: kafka
+      bindings:
+        inputChannel:
+          destination: test_input_channel
+          group: test1
+        outputChannel:
+          destination: test_output_channel
+          group: test1
+      kafka:
+        binder:
+          brokers: localhost:9092
+          type: kafka
+          autoAddPartitions: true
+          auto-create-topics: true
+        consumer:
+          auto-offset-reset: earliest
 
 #  cloud.stream:
 #    default-binder: kafka1
